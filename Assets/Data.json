@@ -1,0 +1,123 @@
+[
+    {
+      "id": 18132,
+      "Property Name": "Shared office",
+      "Address": "Kenya, Nakuru, Kenya",
+      "image": "http://thedigibrain.co.uk/homeo/wp-content/uploads/2022/11/benson-low-o8njpFsiR-g-unsplash-1-1-1.jpg",
+      "is_featured": "0",
+      "price": "216556",
+      "property_type": "Office",
+      "property_status": "Space Booking",
+      "date": "2023-01-09",
+      "active": "1"
+    },
+    {
+      "id": 17957,
+      "Property Name": "Tet teka",
+      "Address": "Opposite Masjid Jamia, Off, Silversand Road, Malindi, Kenya",
+      "image": "http://thedigibrain.co.uk/homeo/wp-content/uploads/2022/10/benson-low-o8njpFsiR-g-unsplash-1-1-1-2.jpg",
+      "is_featured": "0",
+      "price": "12313",
+      "property_type": "Cottage",
+      "property_status": "Vacation Rental",
+      "date": "2023-11-24",
+      "active": "2"
+    },
+    {
+      "id": 17981,
+      "Property Name": "tset",
+      "Address": "Kilifi, Kilifi County, Coastal Kenya, 80108, Kenya",
+      "image": "http://thedigibrain.co.uk/homeo/wp-content/uploads/2022/10/benson-low-o8njpFsiR-g-unsplash-1-1-1-4.jpg",
+      "is_featured": "0",
+      "price": "12231",
+      "property_type": "Apartment",
+      "property_status": "Vacation Rental",
+      "date": "2023-01-01",
+      "active": "2"
+
+    },
+    {
+      "id": 17877,
+      "Property Name": "Beach House",
+      "Address": "Charo wa kiringi, Kilifi, Kenya",
+      "image": "http://thedigibrain.co.uk/homeo/wp-content/uploads/2022/09/beach-house.jpg",
+      "is_featured": "1",
+      "price": "100000",
+      "property_type": "Beach House",
+      "property_status": "Vacation Rental",
+      "date": "2023-06-30",
+      "active": "1"
+
+    },
+    {
+      "id": 17840,
+      "Property Name": "Test Ttile",
+      "Address": "silversand road malindi kenya",
+      "image": "http://thedigibrain.co.uk/homeo/wp-content/uploads/2022/09/christina-wocintechchat-com-UTw3j_aoIKM-unsplash-1-1-1.jpg",
+      "is_featured": "1",
+      "price": "1500",
+      "property_type": "Resort house",
+      "property_status": "Vacation Rental",
+      "date": "2023-03-28",
+      "active": "1"
+    },
+    {
+      "id": 17709,
+      "Property Name": "Classic Duplex",
+      "Address": "Charo wa kiringi, Kilifi, Kenya",
+      "image": "http://thedigibrain.co.uk/homeo/wp-content/uploads/2022/09/download-23.jpg",
+      "is_featured": "0",
+      "price": "15000",
+      "property_type": "Apartment",
+      "property_status": "For Rent",
+      "date": "2023-02-14",
+      "active": "2"
+    },
+    {
+      "id": 17635,
+      "Property Name": "office space",
+      "Address": "XMGW+MRV, Barsheba Road, Frere Town, Old Malindi Rd",
+      "image": "http://thedigibrain.co.uk/homeo/wp-content/uploads/2022/08/040.jpg",
+      "is_featured": "0",
+      "price": "29999",
+      "property_type": "Office",
+      "property_status": "For Sale",
+      "date": "2023-04-11",
+      "active": "1"
+    },
+    {
+      "id": 17622,
+      "Property Name": "2 Bed Apartment with Swimming Pool in Upper Hill",
+      "Address": "FMWM+J5P, Tsangalaweni, Kenya",
+      "image": "http://thedigibrain.co.uk/homeo/wp-content/uploads/2022/08/e0a39cf3-d3ff-422a-96de-ecc2c8061ca3.jpg",
+      "is_featured": "0",
+      "price": "13600",
+      "property_type": "Apartment",
+      "property_status": "For Rent",
+      "date": "2023-08-23",
+      "active": "2"
+    },
+    {
+      "id": 17575,
+      "Property Name": "Gentle Rolling Terrain &#8211; Mature Oaks",
+      "Address": "Q37G+JXG, Malindi, Kenya",
+      "image": "http://thedigibrain.co.uk/homeo/wp-content/uploads/2022/08/1-4028428069.jpg",
+      "is_featured": "0",
+      "price": "5568",
+      "property_type": "Plot",
+      "date": "2023-09-19",
+      "active": "2"
+    },
+    {
+      "id": 17570,
+      "Property Name": "474 Fulton Ranch Rd , Stonewall, TX 78671 &#8211; Gillespie County",
+      "Address": "Charo wa kiringi, Kilifi, Kenya",
+      "image": "http://thedigibrain.co.uk/homeo/wp-content/uploads/2022/08/1-4055403398-scaled.jpg",
+      "is_featured": "0",
+      "price": "139500",
+      "property_type": "Land",
+      "property_status": "For Sale",
+      "date": "2023-10-25",
+      "active": "2"
+    }
+  ]
