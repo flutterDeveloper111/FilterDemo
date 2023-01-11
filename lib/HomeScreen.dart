@@ -20,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Property> property2 = [];
   var catalogdata;
   DateTime? date;
+  bool _isVisible = false;
 
   String formatDate(DateTime date) => DateFormat("yyyy-MM-dd").format(date);
 
@@ -29,6 +30,12 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
     setState(() {
       loadData("Default");
+    });
+  }
+
+  void showToast(var index) {
+    setState(() {
+      _isVisible = !_isVisible;
     });
   }
 
@@ -106,8 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
         (a, b) => (int.parse(a.price!.toString()))
             .compareTo(int.parse(b.price!.toString())),
       );
-    }
-    else if (data == "Price-High to Low") {
+    } else if (data == "Price-High to Low") {
       var data = await rootBundle.loadString('Assets/Data.json');
       catalogdata = json.decode(data);
       print("data is ------$catalogdata");
@@ -131,18 +137,15 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   loadData2(var date) async {
-
-
     property2.clear();
     property.clear();
-    DateTime date2=DateTime.parse(date.toString());
-   // var date1 = DateFormat('dd-MMM-yyyy').format(DateTime.parse(date.toString()));
-   // DateTime date2 = DateTime.parse(date1);
-
+    DateTime date2 = DateTime.parse(date.toString());
+    // var date1 = DateFormat('dd-MMM-yyyy').format(DateTime.parse(date.toString()));
+    // DateTime date2 = DateTime.parse(date1);
 
     print("date2 is $date2");
-   // DateTime inputDate = DateTime.parse(date.toString());
-   //var parseDate = DateFormat("yyyy-MM-dd").parse(DateTime.parse(date.toString()));
+    // DateTime inputDate = DateTime.parse(date.toString());
+    //var parseDate = DateFormat("yyyy-MM-dd").parse(DateTime.parse(date.toString()));
     print(
         "format date is ${DateFormat('yyyy-MM-dd').format(DateTime.parse(date.toString()))}");
 
@@ -154,7 +157,6 @@ class _HomeScreenState extends State<HomeScreen> {
     //print("data is ------$catalogdata");
 
     for (var datalist in catalogdata) {
-
       property2.add(Property.fromJson(datalist));
       /* if(date2.isAtSameMomentAs(DateTime.parse(catalogdata['date'].toString()))){
         print("data match");
@@ -165,25 +167,25 @@ class _HomeScreenState extends State<HomeScreen> {
       else
         {
           print("data not match");
-        }*/}
-      for (int i = 0; i < property2.length; i++) {
-        if(date2.isAfter(DateTime.parse(property2[i].date.toString())))
-          {
-            print("data match");
-            property.add(Property(
-                id: property2[i].id,
-                image: property2[i].image,
-                date: property2[i].date,
-                active: property2[i].active,
-                address: property2[i].address,
-                isFeatured: property2[i].isFeatured,
-                price: property2[i].price,
-                propertyName: property2[i].propertyName,
-                propertyStatus: property2[i].propertyStatus,
-                propertyType: property2[i].propertyType));
-          }
-     //   print("date is:${date2}");
-       // print("catalog is------${DateTime.parse(catalogdata[i]['date'])}");
+        }*/
+    }
+    for (int i = 0; i < property2.length; i++) {
+      if (date2.isAfter(DateTime.parse(property2[i].date.toString()))) {
+        print("data match");
+        property.add(Property(
+            id: property2[i].id,
+            image: property2[i].image,
+            date: property2[i].date,
+            active: property2[i].active,
+            address: property2[i].address,
+            isFeatured: property2[i].isFeatured,
+            price: property2[i].price,
+            propertyName: property2[i].propertyName,
+            propertyStatus: property2[i].propertyStatus,
+            propertyType: property2[i].propertyType));
+      }
+      //   print("date is:${date2}");
+      // print("catalog is------${DateTime.parse(catalogdata[i]['date'])}");
 
       /*  if (DateFormat('yyyy-MM-dd').format(DateTime.parse(date.toString())).isAtSameMomentAs(DateFormat('yyyy-MM-dd').format(DateTime.parse(property2[i].date.toString())))) {
           print("ifdate is:${date2}");
@@ -299,13 +301,108 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 20,
             ),
             Expanded(
-              child:
-              ListView.builder(
+              child: ListView.builder(
                 itemCount: property.length,
                 itemBuilder: (context, index) {
-                  return
-                    /*Card(color:Colors.red );*/
-                    Container(
+                  return Card(
+                    child: ExpansionTile(
+
+                      title: Row(
+                        children: [
+                          Icon(Icons.arrow_drop_down),
+                          Expanded(
+                            child: Text(
+                              property[index].propertyName.toString(),
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                              softWrap: false,
+                            ),
+                          )
+                        ],
+                      ),
+                      children: [
+                        Container(
+                          height: 270,
+                          width: double.infinity,
+                         // color: Colors.red,
+                          child: Column(
+
+                            children: [
+                              Container(
+                                height: 200,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: NetworkImage(property[index].image.toString()),fit: BoxFit.fill
+                                    )
+                                ),
+                              ),
+                              Text(property[index].price.toString()),
+                              SizedBox(height: 20,),
+                              Text(property[index].date.toString())
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                  /* SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                          height: 50,
+                          width: double.infinity,
+                          color: Colors.grey.shade400,
+                          child: Row(
+                            children: [
+                              InkWell(
+                                child: Icon(Icons.arrow_drop_down),
+                                onTap: () {
+                                  showToast(property[index]);
+                                },
+                              ),
+                              Expanded(
+                                child: Text(
+                                  property[index].propertyName.toString(),
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                  softWrap: false,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Visibility(
+                          visible: _isVisible,
+                          child:
+                          Container(
+                            height: 270,
+                            width: double.infinity,
+                            //color: Colors.red,
+                            child: Column(
+
+                              children: [
+                                Container(
+                                  height: 200,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                      image: NetworkImage(property[index].image.toString()),fit: BoxFit.fill
+                                    )
+                                  ),
+                                ),
+                                Text(property[index].price.toString()),
+                                SizedBox(height: 20,),
+                                Text(property[index].date.toString())
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  );*/
+                  /* Container(
                     height: 350,
                     width: double.infinity,
                     // color: Colors.red,
@@ -348,7 +445,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                     ),
-                  );
+                  );*/
                 },
               ),
             ),
