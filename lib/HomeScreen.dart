@@ -21,6 +21,8 @@ class _HomeScreenState extends State<HomeScreen> {
   var catalogdata;
   DateTime? date;
   bool _isVisible = false;
+  bool isSelected = false;
+  List<bool> showQty = [];
 
   String formatDate(DateTime date) => DateFormat("yyyy-MM-dd").format(date);
 
@@ -33,12 +35,21 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  void showToast(var index) {
+  /*void showToast(var index) {
+    // index = true;
+    //_isVisible=index;
+    print(index);
     setState(() {
       _isVisible = !_isVisible;
     });
+  }*/
+  void showHide(int i) {
+   // showQty.clear();
+    setState(() {
+      showQty[i] = !showQty[i];
+    });
   }
-
+  int selected = 0;
   Future<void> loadData(var data) async {
     if (data == "Default") {
       print("Default");
@@ -49,6 +60,11 @@ class _HomeScreenState extends State<HomeScreen> {
       print("data is ------$catalogdata");
       for (var datalist in catalogdata) {
         property.add(Property.fromJson(datalist));
+      }
+      for (int i = 0; i < property.length; i++) {
+
+        showQty.add(false);
+        //showQty.clear();
       }
 
       setState(() {});
@@ -302,11 +318,25 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Expanded(
               child: ListView.builder(
+
+                key: Key('builder ${selected.toString()}'),
                 itemCount: property.length,
                 itemBuilder: (context, index) {
-                  return Card(
+                  return  Card(
                     child: ExpansionTile(
-
+                     initiallyExpanded: index==selected,
+                      key: Key(index.toString()),
+                      onExpansionChanged: (newState) {
+                        if(newState)
+                          setState(() {
+                            Duration(seconds:  20000);
+                            selected = index;
+                          });
+                        else
+                          setState(() {
+                            selected = -1;
+                          });
+                      },
                       title: Row(
                         children: [
                           Icon(Icons.arrow_drop_down),
@@ -324,7 +354,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Container(
                           height: 270,
                           width: double.infinity,
-                         // color: Colors.red,
+                          // color: Colors.red,
                           child: Column(
 
                             children: [
@@ -346,106 +376,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   );
-                  /* SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                          height: 50,
-                          width: double.infinity,
-                          color: Colors.grey.shade400,
-                          child: Row(
-                            children: [
-                              InkWell(
-                                child: Icon(Icons.arrow_drop_down),
-                                onTap: () {
-                                  showToast(property[index]);
-                                },
-                              ),
-                              Expanded(
-                                child: Text(
-                                  property[index].propertyName.toString(),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                  softWrap: false,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Visibility(
-                          visible: _isVisible,
-                          child:
-                          Container(
-                            height: 270,
-                            width: double.infinity,
-                            //color: Colors.red,
-                            child: Column(
 
-                              children: [
-                                Container(
-                                  height: 200,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: NetworkImage(property[index].image.toString()),fit: BoxFit.fill
-                                    )
-                                  ),
-                                ),
-                                Text(property[index].price.toString()),
-                                SizedBox(height: 20,),
-                                Text(property[index].date.toString())
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  );*/
-                  /* Container(
-                    height: 350,
-                    width: double.infinity,
-                    // color: Colors.red,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Colors.black, width: 1)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 200,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                border:
-                                    Border.all(color: Colors.black, width: 1),
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                        property[index].image.toString()),
-                                    fit: BoxFit.fill)),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text("${property[index].propertyName.toString()}"),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(property[index].date.toString()),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text("Price: ${property[index].price.toString()}"),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text("Status: ${property[index].active.toString()}")
-                        ],
-                      ),
-                    ),
-                  );*/
                 },
               ),
             ),
